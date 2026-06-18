@@ -176,6 +176,12 @@
     <p class="text-center font-serif italic text-charcoal/70 mt-10 leading-relaxed max-w-lg mx-auto">
       Agradecemos su puntualidad para compartir cada momento de este día tan especial con nosotros.
     </p>
+    <div class="text-center mt-10">
+      <a id="addCalendar" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 text-[12px] label border border-terra text-terra px-9 py-4 rounded-full hover:bg-terra hover:text-cream transition-all duration-200">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M12 12v5M9.5 14.5h5"/></svg>
+        Agregar a Google Calendar
+      </a>
+    </div>
   </div>
 </section>
 
@@ -210,6 +216,27 @@
         <a href="#" class="inline-flex items-center text-[11px] label text-terra border-b border-terra/40 pb-1 hover:border-terra transition-colors duration-200">Explora opciones</a>
       </div>
     </div>
+
+    <!-- Mapa + direcciones rápidas -->
+    <div class="mt-16 md:mt-20">
+      <div class="overflow-hidden rounded-2xl shadow-sm border border-stone">
+        <iframe
+          src="https://www.google.com/maps?q=Ciudad%20de%20M%C3%A9xico&z=11&output=embed"
+          width="100%" height="380" style="border:0" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Mapa del evento" class="w-full block grayscale-[15%]"></iframe>
+      </div>
+      <p class="text-center font-serif italic text-charcoal/60 mt-5">Ubicación exacta por confirmar · te compartiremos el punto preciso muy pronto.</p>
+      <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
+        <a id="mapGoogle" href="https://www.google.com/maps/dir/?api=1&destination=Ciudad+de+M%C3%A9xico" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[11px] label bg-terra text-cream px-7 py-3.5 rounded-full hover:bg-terralt transition-all duration-200">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Google Maps
+        </a>
+        <a id="mapWaze" href="https://waze.com/ul?q=Ciudad%20de%20M%C3%A9xico&navigate=yes" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[11px] label border border-terra text-terra px-7 py-3.5 rounded-full hover:bg-terra hover:text-cream transition-all duration-200">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg>
+          Waze
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -218,8 +245,52 @@
   <p class="label text-[11px] text-terra mb-5">Mesa de regalos</p>
   <h2 class="font-serif font-light text-4xl md:text-6xl text-ink mb-7 max-w-2xl mx-auto leading-tight">Tu presencia es nuestro mejor regalo</h2>
   <p class="max-w-xl mx-auto text-charcoal/80 leading-[1.9] mb-10">Si además deseas tener un detalle con nosotros, hemos preparado una mesa de regalos para ayudarnos a comenzar esta nueva etapa.</p>
-  <a href="#" class="inline-flex items-center text-[12px] label bg-terra text-cream px-9 py-4 rounded-full hover:bg-terralt transition-all duration-200">Ver mesa de regalos</a>
+  <button id="openGift" type="button" class="inline-flex items-center text-[12px] label bg-terra text-cream px-9 py-4 rounded-full hover:bg-terralt transition-all duration-200">Ver mesa de regalos</button>
 </section>
+
+<!-- ======================= MODAL MESA DE REGALOS ======================= -->
+<div id="giftModal" class="fixed inset-0 z-[60] hidden items-center justify-center px-5 py-8">
+  <div id="giftOverlay" class="absolute inset-0 bg-ink/70 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+  <div id="giftCard" class="relative z-10 w-full max-w-md bg-cream rounded-2xl shadow-2xl px-7 py-9 md:px-9 md:py-10 text-center max-h-[90vh] overflow-y-auto transition-all duration-300 opacity-0 translate-y-4">
+    <button id="closeGift" type="button" aria-label="Cerrar" class="absolute top-4 right-4 text-charcoal/50 hover:text-terra transition-colors duration-200 p-1">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+    <p class="label text-[11px] text-terra mb-4">Mesa de regalos</p>
+    <h3 class="font-serif font-light text-3xl md:text-4xl text-ink mb-4 leading-tight">Tu presencia es<br>el mejor regalo</h3>
+    <p class="text-charcoal/80 leading-relaxed text-sm mb-7">Pero si quieres consentirnos con un detalle para arrancar esta nueva etapa, te dejamos nuestros datos para una transferencia. ¡Lo apreciamos muchísimo! 🥂</p>
+
+    <div class="mx-auto w-12 h-px bg-terra/40 mb-7"></div>
+
+    <div class="text-left space-y-4 mb-7">
+      <div>
+        <p class="label text-[10px] text-charcoal/50 mb-1">Banco</p>
+        <p class="font-serif text-xl text-ink">Banorte</p>
+      </div>
+      <div>
+        <p class="label text-[10px] text-charcoal/50 mb-1">A nombre de</p>
+        <p class="font-serif text-xl text-ink">Celso Alejandro Hernández López</p>
+      </div>
+      <div>
+        <p class="label text-[10px] text-charcoal/50 mb-1">Cuenta</p>
+        <p class="font-serif text-xl text-ink tracking-wide">0680255073</p>
+      </div>
+      <div>
+        <p class="label text-[10px] text-charcoal/50 mb-1">CLABE</p>
+        <p id="clabeValue" class="font-serif text-xl text-ink tracking-wide">072260006802550737</p>
+      </div>
+      <div>
+        <p class="label text-[10px] text-charcoal/50 mb-1">Tarjeta</p>
+        <p class="font-serif text-xl text-ink tracking-wide">4189 1430 9221 8919</p>
+      </div>
+    </div>
+
+    <button id="copyClabe" type="button" class="inline-flex items-center justify-center gap-2 w-full text-[12px] label bg-terra text-cream px-7 py-4 rounded-full hover:bg-terralt transition-all duration-200">
+      <svg id="copyIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1"/></svg>
+      <span id="copyText">Copiar CLABE</span>
+    </button>
+  </div>
+</div>
 
 <!-- ======================= FAQ + DRESS CODE ======================= -->
 <section id="faq" class="bg-cream py-20 md:py-32 px-6">
@@ -363,6 +434,77 @@
     var msg = '¡Hola Celso y Karen! 💍 Confirmo mi asistencia a su boda del 10 de octubre de 2026.\n\nMi nombre es: \nNúmero de invitados: \n\n¡Nos vemos ahí! 🥂';
     var url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
     document.getElementById('rsvpBtn').setAttribute('href', url);
+  })();
+
+  // Mesa de regalos — modal
+  (function () {
+    var modal = document.getElementById('giftModal');
+    var overlay = document.getElementById('giftOverlay');
+    var card = document.getElementById('giftCard');
+    var openBtn = document.getElementById('openGift');
+    var closeBtn = document.getElementById('closeGift');
+
+    function open() {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function () {
+        overlay.classList.remove('opacity-0');
+        card.classList.remove('opacity-0', 'translate-y-4');
+      });
+    }
+    function close() {
+      overlay.classList.add('opacity-0');
+      card.classList.add('opacity-0', 'translate-y-4');
+      document.body.style.overflow = '';
+      setTimeout(function () {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 300);
+    }
+
+    openBtn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+    });
+
+    // Copiar CLABE al portapapeles
+    var copyBtn = document.getElementById('copyClabe');
+    var copyText = document.getElementById('copyText');
+    copyBtn.addEventListener('click', function () {
+      var clabe = document.getElementById('clabeValue').textContent.trim();
+      function done() {
+        copyText.textContent = '¡CLABE copiada!';
+        setTimeout(function () { copyText.textContent = 'Copiar CLABE'; }, 2200);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(clabe).then(done).catch(fallback);
+      } else { fallback(); }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = clabe; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        try { document.execCommand('copy'); done(); } catch (err) {}
+        document.body.removeChild(ta);
+      }
+    });
+  })();
+
+  // Agregar a Google Calendar
+  (function () {
+    var cal = document.getElementById('addCalendar');
+    if (!cal) return;
+    var params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: 'Boda de Celso & Karen',
+      dates: '20261010T163000/20261010T230000',
+      ctz: 'America/Mexico_City',
+      details: 'Acompáñanos a celebrar nuestra boda. Recepción de invitados 4:00 pm · Ceremonia 4:30 pm.',
+      location: 'Ciudad de México'
+    });
+    cal.setAttribute('href', 'https://calendar.google.com/calendar/render?' + params.toString());
   })();
 </script>
 </body>
